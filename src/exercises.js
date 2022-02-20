@@ -1,7 +1,7 @@
 const { mongoose } = require('./db.js');
 
 const exercisesSchema = mongoose.model('Exercises', mongoose.Schema({
-    id: String,
+    username: String,
     description: String,
     duration: Number,
     date: { type: Date, default: new Date() }
