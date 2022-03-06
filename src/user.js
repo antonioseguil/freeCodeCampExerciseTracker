@@ -16,7 +16,7 @@ async function allUser() {
 }
 
 async function findUser(userId) {
-    let user = await UserShema.findById(userId);
+    let user = await UserShema.findById(userId).exec();
     return user;
 }
 

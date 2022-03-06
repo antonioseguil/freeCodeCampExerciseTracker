@@ -5,13 +5,13 @@ const exercisesSchema = mongoose.model('Exercises', mongoose.Schema({
     username: String,
     description: String,
     duration: Number,
-    date: { type: Date, default: new Date(), require : true }
+    date: { type: Date, default: new Date(Date.now()).toUTCString(), require : true }
 }));
 
 
 async function saveExcercise(_excercise, _userId) {
     //crear funcion de busqueda en user
-    let reqUser = user.findUser(_userId);
+    let reqUser = await user.findUser(_userId);
     //Agregando dato al modelo de exercise
     _excercise.username = reqUser.username;
     let excercise = new exercisesSchema(_excercise);
