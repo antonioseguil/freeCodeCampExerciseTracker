@@ -5,7 +5,7 @@ const exercisesSchema = mongoose.model('Exercises', mongoose.Schema({
     username: String,
     description: String,
     duration: Number,
-    date: { type: Date, default: new Date(Date.now()).toUTCString(), require : true }
+    date: String,
 }));
 
 
@@ -14,6 +14,11 @@ async function saveExcercise(_excercise, _userId) {
     let reqUser = await user.findUser(_userId);
     //Agregando dato al modelo de exercise
     _excercise.username = reqUser.username;
+
+    if (_excercise.date === '') {
+        let dateNow = new Date(Date.now()).toDateString();
+        _excercise.date = dateNow;
+    }
     let excercise = new exercisesSchema(_excercise);
     return await excercise.save();
 }

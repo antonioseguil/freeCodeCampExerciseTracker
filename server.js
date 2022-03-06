@@ -27,9 +27,6 @@ app.route('/api/users').post(async (req, res) => {
 //RUTAS DE EXCERCISES
 app.post('/api/users/:id/exercises', async (req, res) => {
   delete req.body[':_id'];
-  if (req.body.date === '') {
-    delete req.body.date;
-  }
   let result = await exercise.saveExcercise(req.body, req.params.id);
   res.json(result);
 });
