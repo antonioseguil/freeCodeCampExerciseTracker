@@ -15,8 +15,14 @@ async function allUser() {
     return users;
 }
 
+function findUser(userId) {
+    let user = UserShema.findById(userId);
+    return user;
+}
+
 module.exports = {
     saveUser,
-    allUser
+    allUser,
+    findUser
 }
 
