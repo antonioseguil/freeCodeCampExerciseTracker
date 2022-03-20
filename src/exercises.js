@@ -14,6 +14,7 @@ async function saveExcercise(_excercise, _userId) {
     let reqUser = await user.findUser(_userId);
     //Agregando dato al modelo de exercise
     _excercise.username = reqUser.username;
+    _excercise['_id'] = reqUser['_id'];
 
     if (_excercise.date === '') {
         let dateNow = new Date(Date.now()).toDateString();
