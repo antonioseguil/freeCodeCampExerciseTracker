@@ -11,14 +11,14 @@ app.use(cors());
 //cabeceras
 app.use(express.static("public"));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
 // RUTAS DE USER
-app.use("/api", require("./src/models/user"));
+app.use("/api", require("./src/routers/user"));
 
 //RUTAS DE EXCERCISES
 app.post("/api/users/:id/exercises", async (req, res) => {

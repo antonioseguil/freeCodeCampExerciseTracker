@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 const user = require("./user.js");
 
 const exercisesSchema = mongoose.model(
@@ -29,3 +29,4 @@ async function saveExcercise(_excercise, _userId) {
 module.exports = {
   saveExcercise,
 };
+ */

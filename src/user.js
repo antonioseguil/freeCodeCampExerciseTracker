@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 
 const UserShema = mongoose.model(
   "User",
@@ -27,3 +27,4 @@ module.exports = {
   allUser,
   findUser,
 };
+ */
