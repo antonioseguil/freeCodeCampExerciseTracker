@@ -17,22 +17,25 @@ const findItem = () => {};
  */
 const createItem = async (req, res) => {
   const { body } = req;
-  body["username"] = body[":_id"];
+  let dataUser = await User.findOne({ _id: body[":_id"] });
   //validante fecha
   if (!body.date) {
-    body["date"] = new Date().toDateString();
+    body.date = new Date().toDateString();
   } else {
-    body["date"] = new Date(body["date"]).toDateString();
+    body.date = new Date(body.date).toDateString();
   }
+  //agregando id de usuario al body
+  body.user = dataUser["_id"];
 
   let data = await Exercises.create(body);
-  //buscando user
-  let dataUser = await User.findById(body[":_id"]);
-  //Alterando respuesta JSON
-  data["_id"] = body[":_id"];
-  let dataReturn = { ...data._doc };
-  dataReturn.username = dataUser.username;
-  res.json(dataReturn);
+
+  return res.json({
+    _id: dataUser._id,
+    username: dataUser.username,
+    description: data.description,
+    duration: data.duration,
+    date: data.date,
+  });
 };
 
 module.exports = {
