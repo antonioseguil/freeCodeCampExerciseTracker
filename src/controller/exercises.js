@@ -1,4 +1,5 @@
 const Exercises = require("./../models/exercises");
+const User = require("./../models/user");
 
 /**
  * Función para obtener todos los registros
@@ -15,12 +16,16 @@ const findItem = () => {};
  * @param {*} res
  */
 const createItem = async (req, res) => {
-  const { body, params } = req;
-  body["user"] = body[":_id"];
-  //body.user = params.id;
+  const { body } = req;
+  body["username"] = body[":_id"];
   let data = await Exercises.create(body);
+  //buscando user
+  let dataUser = await User.findById(body[":_id"]);
+  //Alterando respuesta JSON
   data["_id"] = body[":_id"];
-  res.json(data);
+  let dataReturn = { ...data._doc };
+  dataReturn.username = dataUser.username;
+  res.json(dataReturn);
 };
 
 module.exports = {

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ExercicesShema = new mongoose.Schema(
   {
-    user: {
+    username: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
@@ -16,7 +16,6 @@ const ExercicesShema = new mongoose.Schema(
     date: {
       type: String,
       default: Date.now().toLocaleString(),
-      _id: true,
     },
   }
 );
