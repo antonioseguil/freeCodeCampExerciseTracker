@@ -18,6 +18,13 @@ const findItem = () => {};
 const createItem = async (req, res) => {
   const { body } = req;
   body["username"] = body[":_id"];
+  //validante fecha
+  if (!body.date) {
+    body["date"] = new Date().toDateString();
+  } else {
+    body["date"] = new Date(body["date"]).toDateString();
+  }
+
   let data = await Exercises.create(body);
   //buscando user
   let dataUser = await User.findById(body[":_id"]);
