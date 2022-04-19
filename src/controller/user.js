@@ -9,7 +9,6 @@ const findItem = () => {};
 
 const createItem = async (req, res) => {
   let { body } = req;
-  console.log(body);
   let data = await User.create(body);
   res.json(data);
 };

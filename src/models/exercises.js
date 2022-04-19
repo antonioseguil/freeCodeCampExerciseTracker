@@ -1,19 +1,24 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const ExercicesShema = new mongoose.Schema({
-  username: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  duration: {
-    type: Number,
-  },
-  date: {
-    type: String,
-    default: new Date(Date.now()).toDateString(),
-  },
-});
+const ExercicesShema = new mongoose.Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    description: {
+      type: String,
+    },
+    duration: {
+      type: Number,
+    },
+    date: {
+      type: String,
+      default: Date.now().toLocaleString(),
+      _id: true,
+    },
+  }
+);
 
 module.exports = mongoose.model("Exercises", ExercicesShema);

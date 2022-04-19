@@ -19,15 +19,16 @@ app.get("/", (req, res) => {
 
 // RUTAS DE USER
 app.use("/api", require("./src/routers/user"));
+app.use("/api", require("./src/routers/exercises"));
 
 //RUTAS DE EXCERCISES
-app.post("/api/users/:id/exercises", async (req, res) => {
+/* app.post("/api/users/:id/exercises", async (req, res) => {
   let result = await exercise.saveExcercise(req.body, req.params.id);
   res.json(result);
-});
+}); */
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log("Your app is listening on port");
+  console.log(`Your app is listening on port 3000`);
 });
 
 db(); //Haciendo un llamado a la base de datos
